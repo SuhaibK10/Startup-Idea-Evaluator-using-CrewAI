@@ -1,5 +1,5 @@
 """
-VentureScope — AI-Powered Startup Idea Evaluator
+VentureScope — MultiAgent Startup Idea Evaluator
 Five specialized CrewAI agents evaluate your idea with the rigor of a top-tier VC fund.
 """
 
