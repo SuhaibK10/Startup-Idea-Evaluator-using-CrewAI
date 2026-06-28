@@ -29,7 +29,7 @@ from tasks import (
 from scoring import parse_scores, overall_score, verdict, radar_chart
 from pdf_export import generate_pdf
 
-load_dotenv()
+load_dotenv(override=True)
 
 # ── Page config ───────────────────────────────────────────────────────────────
 st.set_page_config(
@@ -275,12 +275,19 @@ with st.sidebar:
     price = st.text_input("Intended Pricing", placeholder="e.g., ₹2,999/month")
 
     st.divider()
-    st.markdown("**Optional Context**")
-    team     = st.text_input("Team Background",   placeholder="e.g., ex-Amazon PM + IIT ML engineer")
-    traction = st.text_input("Current Traction",  placeholder="e.g., 3 pilot clinics, 200 bookings")
+    run_btn = st.button("🔭 Run VC-Grade Evaluation", type="primary", use_container_width=True)
 
     st.divider()
-    run_btn = st.button("🔭 Run VC-Grade Evaluation", type="primary", use_container_width=True)
+    st.markdown("**Agent Pipeline**")
+    st.markdown("""
+<div style="font-size:0.82rem;line-height:2;color:#475569">
+  <div>🔍 <b>Agent 1</b> — Problem Validator</div>
+  <div>📊 <b>Agent 2</b> — Market Researcher</div>
+  <div>💼 <b>Agent 3</b> — Business Strategist</div>
+  <div>⚠️ <b>Agent 4</b> — Risk & Moat Analyst</div>
+  <div>📄 <b>Agent 5</b> — VC Memo Writer</div>
+</div>
+""", unsafe_allow_html=True)
 
 
 # ── Run analysis ──────────────────────────────────────────────────────────────
@@ -291,11 +298,9 @@ if run_btn:
 
     problem_ctx = "\n".join([
         f"**Startup Idea**: {idea}",
-        f"**Target Customer**: {target  or 'Not specified'}",
-        f"**Market / Region**: {region  or 'Not specified'}",
+        f"**Target Customer**: {target or 'Not specified'}",
+        f"**Market / Region**: {region or 'Not specified'}",
         f"**Intended Pricing**: {price  or 'Not specified'}",
-        f"**Team Background**: {team    or 'Not specified'}",
-        f"**Current Traction**: {traction or 'None yet'}",
     ])
 
     llm = make_llm()
@@ -514,3 +519,15 @@ else:
             <div class="feat-desc">{desc}</div>
         </div>
         """, unsafe_allow_html=True)
+
+    st.markdown("""
+<div style="background:#f0f7ff;border-left:4px solid #1a4a8a;border-radius:0 10px 10px 0;
+            padding:1rem 1.25rem;margin:1.5rem 0 0 0;font-size:0.88rem;color:#1e293b;line-height:1.7">
+  <span style="font-weight:700;color:#1a4a8a">How the Investment Score is calculated —</span>
+  The score mirrors how real VC funds structure deal screening.
+  <b>Problem</b> gets the highest weight (25%) because most startups fail from building something nobody needs.
+  <b>Market</b> and <b>Business Model</b> are equal (20% each) — a big market with bad unit economics is worthless.
+  <b>Execution Risk</b> (20%) reflects the team's ability to actually build it.
+  <b>Moat</b> (15%) is weighted lowest early-stage because defensibility is earned over time, not upfront.
+</div>
+""", unsafe_allow_html=True)
