@@ -1,10 +1,8 @@
-from crewai import Agent
-from langchain_openai import ChatOpenAI
+from crewai import Agent, LLM
 
 
-def problem_validator(llm: ChatOpenAI) -> Agent:
+def problem_validator(llm: LLM) -> Agent:
     return Agent(
-        name="Problem Validator",
         role="Chief Problem Officer",
         goal=(
             "Determine whether the startup problem is real, painful, and urgent "
@@ -24,9 +22,8 @@ def problem_validator(llm: ChatOpenAI) -> Agent:
     )
 
 
-def market_researcher(llm: ChatOpenAI) -> Agent:
+def market_researcher(llm: LLM) -> Agent:
     return Agent(
-        name="Market Researcher",
         role="Market Intelligence Director",
         goal=(
             "Size the total addressable market accurately, map the competitive landscape, "
@@ -45,9 +42,8 @@ def market_researcher(llm: ChatOpenAI) -> Agent:
     )
 
 
-def business_model_builder(llm: ChatOpenAI) -> Agent:
+def business_model_builder(llm: LLM) -> Agent:
     return Agent(
-        name="Business Model Strategist",
         role="Revenue Architecture Specialist",
         goal=(
             "Design a clear, believable path from zero to $10M ARR with specific pricing, "
@@ -66,9 +62,8 @@ def business_model_builder(llm: ChatOpenAI) -> Agent:
     )
 
 
-def risk_analyst(llm: ChatOpenAI) -> Agent:
+def risk_analyst(llm: LLM) -> Agent:
     return Agent(
-        name="Risk & Moat Analyst",
         role="Investment Risk Partner",
         goal=(
             "Surface every risk that could kill this company, every moat that could "
@@ -88,9 +83,8 @@ def risk_analyst(llm: ChatOpenAI) -> Agent:
     )
 
 
-def vc_memo_writer(llm: ChatOpenAI) -> Agent:
+def vc_memo_writer(llm: LLM) -> Agent:
     return Agent(
-        name="VC Investment Memo Writer",
         role="Managing Director",
         goal=(
             "Write a compelling, honest investment memo that a VC partnership would actually "

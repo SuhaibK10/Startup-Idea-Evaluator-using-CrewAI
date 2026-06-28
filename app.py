@@ -10,7 +10,7 @@ import datetime
 from dotenv import load_dotenv
 
 import streamlit as st
-from langchain_openai import ChatOpenAI
+from crewai import LLM
 
 from agents import (
     problem_validator,
@@ -230,16 +230,12 @@ def join_ctx(*parts) -> str:
     return "\n\n---\n\n".join(textify(p) for p in parts if p)
 
 
-def make_llm() -> ChatOpenAI:
-    return ChatOpenAI(
+def make_llm() -> LLM:
+    return LLM(
         model=os.getenv("OPENROUTER_MODEL", "openai/gpt-4o-mini"),
         base_url=os.getenv("OPENAI_BASE_URL", "https://openrouter.ai/api/v1"),
         api_key=os.getenv("OPENROUTER_API_KEY") or os.getenv("OPENAI_API_KEY"),
         temperature=0.2,
-        default_headers={k: v for k, v in {
-            "HTTP-Referer": os.getenv("HTTP_REFERER"),
-            "X-Title": os.getenv("X_TITLE", "VentureScope"),
-        }.items() if v},
     )
 
 
