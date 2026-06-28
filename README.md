@@ -134,8 +134,7 @@ Open [http://localhost:8501](http://localhost:8501) in your browser.
 ├── scoring.py       # Score parsing (regex) + Plotly radar chart
 ├── pdf_export.py    # fpdf2 PDF report generator
 ├── requirements.txt
-├── .env             # API keys (never commit)
-└── main.py          # Original prototype (kept for reference)
+└── .env             # API keys (never commit)
 ```
 
 ---
