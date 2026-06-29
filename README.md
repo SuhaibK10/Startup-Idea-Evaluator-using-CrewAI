@@ -1,4 +1,4 @@
-# VentureScope — MultiAgent Startup Idea Evaluator
+# VentureScope - MultiAgent Startup Idea Evaluator
 
 > **Five specialized CrewAI agents evaluate your startup idea with the rigor and frameworks used by top-tier VC funds like Sequoia, a16z, and Benchmark.**
 
