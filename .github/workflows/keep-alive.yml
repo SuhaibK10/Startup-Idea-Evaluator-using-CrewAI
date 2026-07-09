@@ -11,4 +11,4 @@ jobs:
     steps:
       - name: Ping Streamlit App
         run: |
-          curl -L --fail https://your-app.streamlit.app
+          curl -L --fail https://startupideaevaluator.streamlit.app
